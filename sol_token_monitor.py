@@ -9,8 +9,7 @@ CHAT_ID = "6861809269"
 
 # API 配置
 API_URL = "https://api.dexscreener.com/token-profiles/latest/v1"
-# CHAIN_ID = "sui"
-CHAIN_ID = "solana"
+CHAIN_ID = "sui"  # 目标链标识，改为 Sui
 SEEN_TOKENS_FILE = "seen_tokens.json"
 
 def send_telegram_message(message: str):
@@ -56,12 +55,12 @@ def format_token_message(token: Dict) -> str:
     header = token.get("header", "N/A")
     description = token.get("description", "N/A")
     links = token.get("links", [])
-    
+
     # 格式化相关链接
     formatted_links = "\n".join(
         [f"- {link.get('label', 'N/A')}: <a href='{link.get('url', '#')}'>Link</a>" for link in links]
     )
-    
+
     return (
         f"<b>代币页面:</b> <a href='{url}'>{url}</a>\n"
         f"<b>链标识:</b> {chain_id}\n"
@@ -85,12 +84,12 @@ def main():
     # 过滤出新代币
     new_tokens = [token for token in latest_tokens if token["tokenAddress"] not in seen_tokens]
     if not new_tokens:
-        send_telegram_message("没有找到新的 SOL 链代币。")
+        send_telegram_message("没有找到新的 Sui 链代币。")
         return
 
     # 发送每个新代币的消息
     for token in new_tokens:
-        if token["chainId"] == CHAIN_ID:  # 确保链标识为 Solana
+        if token["chainId"] == CHAIN_ID:  # 确保链标识为 Sui
             message = format_token_message(token)
             send_telegram_message(message)
             seen_tokens.add(token["tokenAddress"])
