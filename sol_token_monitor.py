@@ -9,7 +9,7 @@ CHAT_ID = "6861809269"
 
 # API 配置
 API_URL = "https://api.dexscreener.com/token-profiles/latest/v1"
-CHAIN_ID = "sui"  # 目标链标识，改为 Sui
+CHAIN_ID = "solana"  # 目标链标识，改为 Sui
 SEEN_TOKENS_FILE = "seen_tokens.json"
 
 def send_telegram_message(message: str):
