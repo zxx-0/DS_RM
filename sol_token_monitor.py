@@ -9,7 +9,8 @@ CHAT_ID = "6861809269"
 
 # API 配置
 API_URL = "https://api.dexscreener.com/token-profiles/latest/v1"
-CHAIN_ID = "solana"
+CHAIN_ID = "sui"
+# CHAIN_ID = "solana"
 SEEN_TOKENS_FILE = "seen_tokens.json"
 
 def send_telegram_message(message: str):
